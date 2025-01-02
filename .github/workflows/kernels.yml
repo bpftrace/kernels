@@ -44,7 +44,7 @@ jobs:
         # Print to stdout kernel we need to build and upload
         for line in lines:
             version = line.strip()
-            name = f"bzImage-{version}"
+            name = f"linux-{version}.tar.zstd"
             if name not in existing:
                 print(line)
         ' | tee -a "$GITHUB_OUTPUT"
@@ -63,6 +63,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        for kernel in bzImage-*; do
+        for kernel in linux-*; do
           gh release upload assets "$kernel"
         done

@@ -17,6 +17,7 @@ RUN apk update && apk add \
   python3 \
   openssl \
   openssl-dev \
+  tar \
   xz \
   zstd
 

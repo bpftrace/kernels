@@ -45,5 +45,5 @@ docker build \
 # Run builder
 docker run --rm -v "$(pwd):/output" vmtest-kernel-builder-"$VERSION"
 
-# Rename bzImage appropriately
-mv -f bzImage bzImage-"$VERSION"
+# Rename linux tarball appropriately
+mv -f linux.tar.zstd linux-"$VERSION".tar.zstd
