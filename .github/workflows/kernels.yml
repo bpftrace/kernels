@@ -56,6 +56,8 @@ jobs:
     - name: Build needed kernels
       run: |
         while IFS= read -r version; do
+            # If there's no diff, there will be a single empty version
+            [[ -n "$version" ]] || continue
             echo "Building: ${version}"
             ./build.sh "$version"
         done <<< "${{ steps.calculate.outputs.NEEDED_KERNELS }}"
@@ -64,6 +66,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        # If there's no diff, make glob expand to empty
+        shopt -s nullglob
+
         for kernel in linux-*; do
           gh release upload assets "$kernel"
         done
