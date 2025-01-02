@@ -1,0 +1,36 @@
+ARG ALPINE_VERSION
+FROM alpine:${ALPINE_VERSION}
+
+RUN apk update && apk add \
+  bash \
+  bison \
+  build-base \
+  diffutils \
+  elfutils-dev \
+  findutils \
+  flex \
+  git \
+  gzip \
+  linux-headers \
+  pahole \
+  perl \
+  python3 \
+  openssl \
+  openssl-dev \
+  xz \
+  zstd
+
+WORKDIR /
+
+ARG KERNEL_REPO=https://github.com/torvalds/linux.git
+ARG KERNEL_TAG
+
+RUN git clone --depth 1 ${KERNEL_REPO} linux --branch ${KERNEL_TAG}
+WORKDIR linux
+
+COPY ./docker/config_kernel.sh config_kernel.sh
+COPY ./docker/build_kernel_container.sh build_kernel_container.sh
+COPY ./config config
+RUN ./config_kernel.sh
+
+ENTRYPOINT ["./build_kernel_container.sh"]
