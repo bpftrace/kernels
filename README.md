@@ -15,6 +15,30 @@ you want. Examples:
 Once the change is checked in, automation will build and upload any kernels not
 already present in the [Assets Release][1] to the assets release.
 
+## Doing a local build
+
+Doing a local build is useful for testing an infra or config change. For example:
+
+```sh
+$ ./build.sh v6.6
+[...]
+
+$ file linux-v6.6.tar.zst
+linux-v6.6.tar.zst: Zstandard compressed data (v0.8+), Dictionary ID: None
+
+$ tar --zstd -xvf linux-v6.6.tar.zst
+[...]
+
+$ vmtest -k ./assets/bzImage -- uname -r
+=> bzImage
+===> Booting
+===> Setting up VM
+===> Running command
+6.6.0
+```
+
+Note it could take a while to build a kernel.
+
 ## Changing already-built kernels
 
 Automation is not yet smart enough to rebuild and reupload existing assets
