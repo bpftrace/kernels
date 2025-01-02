@@ -28,7 +28,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        existing=$(gh release view test_assets --json assets --jq '.[][].name')
+        existing=$(gh release view assets --json assets --jq '.[][].name')
 
         # Begin multiline output parameter
         echo "NEEDED_KERNELS<<MULTILINE_EOF" >> "$GITHUB_OUTPUT"
@@ -64,5 +64,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         for kernel in bzImage-*; do
-          gh release upload test_assets "$kernel"
+          gh release upload assets "$kernel"
         done
