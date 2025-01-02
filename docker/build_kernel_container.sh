@@ -21,4 +21,4 @@ cp "$bzimage" /assets
 make INSTALL_MOD_PATH=/assets modules_install
 
 # Tar up and compress assets into output directory
-tar --zstd -cf /output/linux.tar.zstd /assets
+tar --zstd -cf /output/linux.tar.zst /assets

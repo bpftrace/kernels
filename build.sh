@@ -46,4 +46,4 @@ docker build \
 docker run --rm -v "$(pwd):/output" vmtest-kernel-builder-"$VERSION"
 
 # Rename linux tarball appropriately
-mv -f linux.tar.zstd linux-"$VERSION".tar.zstd
+mv -f linux.tar.zst linux-"$VERSION".tar.zst
