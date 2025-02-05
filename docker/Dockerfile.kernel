@@ -23,7 +23,7 @@ RUN apk update && apk add \
 
 WORKDIR /
 
-ARG KERNEL_REPO=https://github.com/torvalds/linux.git
+ARG KERNEL_REPO=https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
 ARG KERNEL_TAG
 
 RUN git clone --depth 1 ${KERNEL_REPO} linux --branch ${KERNEL_TAG}
