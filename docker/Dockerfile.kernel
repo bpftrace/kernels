@@ -2,6 +2,7 @@ ARG ALPINE_VERSION
 FROM alpine:${ALPINE_VERSION}
 
 RUN apk update && apk add \
+  argp-standalone \
   bash \
   bison \
   build-base \
